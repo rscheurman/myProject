@@ -82,15 +82,12 @@ ActiveRecord::Schema.define(version: 20170626151357) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.text     "badge"
-<<<<<<< HEAD
   end
 
   create_table "topics", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-=======
->>>>>>> fa5cf87de9eb633294620a783d37eb39fbea3f2d
   end
 
 
