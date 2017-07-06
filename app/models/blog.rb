@@ -6,18 +6,4 @@ class Blog < ApplicationRecord
   validates_presence_of :title, :body
 
   belongs_to :topic
-
-  has_many :comments, dependent: :destroy
-
-  def self.special_blogs
-    all
-  end
-
-  def self.featured_blogs
-    limit(2)
-  end
-
-  def self.recent
-    order("created_at DESC")
-  end
 end
