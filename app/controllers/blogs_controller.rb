@@ -3,11 +3,10 @@ class BlogsController < ApplicationController
   layout "blog"
   access all: [:show, :index], user: {except: [:destroy, :new, :create, :update, :edit, :toggle_status]}, site_admin: :all
 
-
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
+    @blogs = Blog.page(params[:page]).per(5)
     @page_title = "My Portfolio Blog"
   end
 
@@ -62,13 +61,14 @@ class BlogsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def toggle_status
-      if @blog.draft?
-        @blog.published!
-      elsif @blog.published?
-        @blog.draft!
-      end
+    if @blog.draft?
+      @blog.published!
+    elsif @blog.published?
+      @blog.draft!
+    end
+        
     redirect_to blogs_url, notice: 'Post status has been updated.'
   end
 
